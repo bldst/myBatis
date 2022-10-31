@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatis.mapper.studentmapper2" >
+    <insert id="insert" parameterType="com.example.mybatis.student.student">
+        INSERT INTO `student`( `student_name`, `student_sex`, `grade`, `major`) VALUES (#{name},#{sex},#{grade},#{major})
+    </insert>
+    <delete id="delete" parameterType="com.example.mybatis.student.student">
+      DELETE FROM `student` WHERE id=#{id}
+    </delete>
+    <update id="update" parameterType="com.example.mybatis.student.student">
+        UPDATE `student` SET `student_name`=#{name} WHERE id=#{id}
+    </update>
+    <select id="getOne" parameterType="com.example.mybatis.student.student" resultType="Student" resultMap="ResultwithAll">
+     SELECT * FROM `student` WHERE id=#{id}
+    </select>
+    <resultMap id="ResultwithAll" type="com.example.mybatis.student.student">
+        <id column="id" property="id"></id>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="major" column="major"></result>
+        <association property="card" column="id" javaType="Card" select="com.example.mybatis.mapper.Cardmapper.selectByid"></association>
+    </resultMap>
+ </mapper>
+
+
+
