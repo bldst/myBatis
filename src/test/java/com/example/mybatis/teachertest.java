@@ -21,6 +21,7 @@ public class teachertest {
         wrapper.ne("sex","男");
         wrapper.orderByAsc("id");
         System.out.println(teacherMappermp.selectList(wrapper));
+        //第一次
     }
     @Test
     void seletwto(){
